@@ -1,7 +1,9 @@
 package ahmetov.slearnbackend.web;
 
 import ahmetov.slearnbackend.model.dto.AuthDto;
+import ahmetov.slearnbackend.model.dto.JwtResponse;
 import ahmetov.slearnbackend.model.dto.RegistrationDto;
+import ahmetov.slearnbackend.model.dto.RegistrationResponse;
 import ahmetov.slearnbackend.security.JwtTokenProvider;
 import ahmetov.slearnbackend.security.SecurityConstant;
 import ahmetov.slearnbackend.service.UserService;
@@ -27,14 +29,14 @@ public class AuthController {
     private final AuthenticationManager authenticationManager;
     private final JwtTokenProvider tokenProvider;
 
-    @PostMapping("/auth")
+    @PostMapping(value = "/auth", produces = "application/json")
     public ResponseEntity<Object> login(@RequestBody AuthDto authDto) {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                 authDto.getEmail(),
                 authDto.getPassword()
         ));
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        String jwt = SecurityConstant.TOKEN_PREFIX + tokenProvider.generateToken(authentication);
+        JwtResponse jwt = new JwtResponse(SecurityConstant.TOKEN_PREFIX + tokenProvider.generateToken(authentication));
 
         return ResponseEntity.ok(jwt);
     }
@@ -42,6 +44,6 @@ public class AuthController {
     @PostMapping("/registration")
     public ResponseEntity<Object> registration(@RequestBody @Valid RegistrationDto user) {
         userService.registration(user);
-        return ResponseEntity.ok("Юзер зарегистрирован");
+        return ResponseEntity.ok(new RegistrationResponse("Юзер зарегистрирован"));
     }
 }

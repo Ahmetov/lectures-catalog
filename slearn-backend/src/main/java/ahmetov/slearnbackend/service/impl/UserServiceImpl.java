@@ -9,12 +9,15 @@ import ahmetov.slearnbackend.model.Role;
 import ahmetov.slearnbackend.model.dto.RegistrationDto;
 import ahmetov.slearnbackend.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -76,5 +79,11 @@ public class UserServiceImpl implements UserService {
                 Collections.singletonList(roleRepository.findByName(AppRoles.STUDENT))
         );
         userRepository.save(newUser);
+    }
+
+    @Override
+    public List<Role> getRolesOfCurrentUser() {
+        return SecurityContextHolder.getContext().getAuthentication().getAuthorities().stream().map(a-> new Role(a.getAuthority()))
+                .collect(Collectors.toList());
     }
 }

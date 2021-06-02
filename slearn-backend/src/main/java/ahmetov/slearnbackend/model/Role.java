@@ -1,5 +1,6 @@
 package ahmetov.slearnbackend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -24,6 +25,7 @@ public class Role {
         this.name = name;
     }
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "roles")
     private Collection<AppUser> users;
 }

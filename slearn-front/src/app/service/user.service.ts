@@ -21,15 +21,11 @@ export class UserService {
     return this.http.post<User>(URL, user);
   }
 
-  authenticate(credentials: any): Observable<any> {
-    const headers = new HttpHeaders(credentials ? {
-      authorization : 'Basic ' + btoa(credentials.username + ':' + credentials.password)
-    } : {});
-
-    return this.http.get('user', {headers: headers});
-  }
-
   delete(id: number): Observable<any> {
     return this.http.delete(URL + `/${id}`);
+  }
+
+  getCurrentUserRoles(): Observable<any>{
+    return this.http.get(URL + '/roles')
   }
 }

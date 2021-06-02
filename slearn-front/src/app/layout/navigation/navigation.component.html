@@ -10,11 +10,14 @@
         <li class="nav-item">
           <a class="nav-link" aria-current="page" href="#">Лекции</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#" [routerLink]="['/lecture']">Управление лекциями</a>
+        <li *ngIf="isAdmin" class="nav-item">
+          <a class="nav-link" [routerLink]="['/lectures']">Управление лекциями</a>
+        </li>
+        <li *ngIf="isAdmin" class="nav-item">
+          <a class="nav-link" [routerLink]="['/users']">Управление пользователями</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#" [routerLink]="['/login']">Управление пользователями</a>
+          <a class="nav-link" (click)="logout()">Выход</a>
         </li>
       </ul>
     </div>

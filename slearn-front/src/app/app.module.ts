@@ -14,6 +14,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { AuthComponent } from './security/auth/auth.component';
 import { RegistrationComponent } from './security/registration/registration.component';
 import { AppRoutingModule } from './app-routing.module';
+import { UserComponent } from './user/user.component';
+import {authInterceptorProvider} from "./helper/auth-interceptor.service";
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import { AppRoutingModule } from './app-routing.module';
     NavigationComponent,
     NotFoundComponent,
     AuthComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +37,7 @@ import { AppRoutingModule } from './app-routing.module';
     ReactiveFormsModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [authInterceptorProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,26 @@
+<app-navigation></app-navigation>
+
+
+<b>Создать</b>
+<input type="text" name="name" >
+<br>
+<input type="text" name="description" >
+<br>
+<button >Создать</button>
+
+
+<b>Все пользователи</b>
+<div>
+  <div class="green-back" *ngFor="let usr of users">
+    <div class="card card-body dark-green-back">
+    <span>
+      {{usr.firstname}}
+      <span style="float: right">
+        <button class="btn btn-danger" style="margin-right: 10px" >Удалить</button>
+        <button class="btn btn-warning" >Обновить</button>
+      </span>
+      </span>
+    </div>
+  </div>
+  <br>
+</div>

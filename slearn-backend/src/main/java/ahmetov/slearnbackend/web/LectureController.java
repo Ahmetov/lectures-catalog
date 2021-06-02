@@ -13,6 +13,7 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RequiredArgsConstructor
 public class LectureController {
+
     private final LectureService lectureService;
 
     @GetMapping
@@ -28,19 +29,19 @@ public class LectureController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAuthority('student')")
+    @PreAuthorize("hasAuthority('admin')")
     public void delete(@PathVariable Long id) {
         lectureService.delete(id);
     }
 
     @PutMapping("/{id}")
-    @PreAuthorize("hasAuthority('student')")
+    @PreAuthorize("hasAuthority('admin')")
     public void update(@RequestBody Lecture lecture, @PathVariable Long id) {
         lectureService.update(lecture);
     }
 
     @PostMapping
-    @PreAuthorize("hasAuthority('student')")
+    @PreAuthorize("hasAuthority('admin')")
     public void save(@RequestBody Lecture lecture) {
         lectureService.create(lecture);
     }

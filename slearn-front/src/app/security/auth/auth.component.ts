@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {UserService} from "../../service/user.service";
+import {AuthService} from "../../service/auth.service";
+import {TokenStorageService} from "../../service/token-storage.service";
 
 @Component({
   selector: 'app-auth',
@@ -9,23 +11,28 @@ import {UserService} from "../../service/user.service";
 })
 export class AuthComponent implements OnInit {
 
-  credentials = {username: '', password: ''};
-  authenticated = false;
+  credentials = {email: '', password: ''};
 
-  constructor(public router: Router, public userService: UserService) { }
+  constructor(public router: Router,
+              public authService: AuthService,
+              public tokenService: TokenStorageService) {
+  }
 
   ngOnInit(): void {
+    if (this.tokenService.getToken()) {
+      this.router.navigate(['lectures'])
+    }
   }
 
   login(): void {
-    this.userService.authenticate(this.credentials).subscribe(response => {
-      if (response['name']) {
-        this.authenticated = true;
-      } else {
-        this.authenticated = false;
-      }
-      this.router.navigate(['/lectures']);
-    })
-    console.log("no auth");
+    this.authService.authenticate({email: this.credentials.email, password: this.credentials.password})
+      .subscribe(response => {
+        this.tokenService.saveToken(response.jwt);
+        this.tokenService.saveUser(response);
+        this.router.navigate(['/lectures']);
+        window.location.reload();
+      }, error => {
+        console.log(error)
+      })
   }
 }

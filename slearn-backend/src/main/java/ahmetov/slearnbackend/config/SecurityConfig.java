@@ -23,6 +23,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.Arrays;
 
 @Configuration
 @EnableWebSecurity
@@ -44,7 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .csrf().disable()
+                .cors().and().csrf().disable()
                 .exceptionHandling()
                 .authenticationEntryPoint(
                         (request, response, ex) -> {
@@ -87,15 +88,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         Конфигурация CORS переопределение для использования REST API
         сторонними сервисами
      */
-    private CorsConfigurationSource configurationSource() {
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        CorsConfiguration config = new CorsConfiguration();
-        config.addAllowedOrigin("http://localhost:4200");
-        config.setAllowCredentials(true);
-        config.addAllowedHeader("X-Requested-With");
-        config.addAllowedHeader("Content-Type");
-        config.addAllowedMethod(HttpMethod.POST);
-        source.registerCorsConfiguration("/**", config);
-        return source;
-    }
+//    @Bean
+//    public CorsConfigurationSource corsFilter() {
+//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+//        CorsConfiguration config = new CorsConfiguration();
+//        config.setAllowCredentials(true);
+//        config.addAllowedOrigin("http://localhost:4200");
+//        config.addAllowedHeader("*");
+//        config.addAllowedMethod(HttpMethod.POST);
+//        config.addAllowedMethod(HttpMethod.GET);
+//        config.addAllowedMethod(HttpMethod.OPTIONS);
+//        config.addAllowedMethod(HttpMethod.PUT);
+//        config.addAllowedMethod(HttpMethod.DELETE);
+//        source.registerCorsConfiguration("/**", config);
+//        return source;
+//    }
 }
