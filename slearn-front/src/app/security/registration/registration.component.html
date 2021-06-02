@@ -1,0 +1,27 @@
+<p style="margin-top: 30px" class="h1 text-center">Регистрация</p>
+
+<div class="login-form card card-body">
+  <label for="email">Почта</label>
+  <input id="email" [(ngModel)]="this.user.email" class="form-control" type="text"><br>
+
+  <label for="password">Пароль</label>
+  <input id="password" [(ngModel)]="this.user.password" class="form-control" type="password"><br>
+
+  <label for="password-repeat">Повторный пароль</label>
+  <input id="password-repeat" [(ngModel)]="this.user.passwordRepeat" class="form-control" type="password"><br>
+
+  <label for="firstname">Имя</label>
+  <input id="firstname" class="form-control" [(ngModel)]="this.user.firstname" type="text"><br>
+
+  <label for="lastname">Фамилия</label>
+  <input id="lastname" class="form-control" [(ngModel)]="this.user.lastname" type="text"><br>
+
+  <label for="address">Адрес</label>
+  <input id="address" class="form-control" [(ngModel)]="this.user.address" type="text"><br>
+
+  <label for="phone">Телефон</label>
+  <input id="phone" class="form-control" [(ngModel)]="this.user.phone" type="text"><br>
+
+  <button class="btn btn-secondary" (click)="registration()">Зарегестрироваться</button><br>
+  <button class="btn btn-secondary" routerLink="/login">Логин</button>
+</div>

@@ -1,0 +1,47 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* Ссылка на навигационной панеле */
+.navbar-collapse ul li a {
+  color: antiquewhite;
+}
+
+.navbar-collapse ul li a:visited {
+  color: antiquewhite;
+}
+
+/* mouse over link */
+.navbar-collapse ul li a:hover {
+  color: whitesmoke;
+}
+
+/* selected link */
+.navbar-collapse ul li a:active {
+  color: antiquewhite;
+}
+
+nav {
+  background-color: darkolivegreen !important;
+}
+
+.container-fluid a {
+  color: antiquewhite;
+}
+
+.green-back {
+  background: #f0f5f0;
+  margin: 20px;
+}
+
+.dark-green-back {
+  background: #305c37;
+  color: whitesmoke;
+}
+/* login form */
+.login-form {
+  margin: 50px auto;
+  width: 400px;
+}
+

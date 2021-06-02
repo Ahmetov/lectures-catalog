@@ -1,0 +1,25 @@
+<app-navigation></app-navigation>
+<p>Управление лекциями</p>
+
+<b>Создать</b>
+<input type="text" name="name" [(ngModel)]="this.lecture.name">
+<br>
+<input type="text" name="description" [(ngModel)]="this.lecture.description">
+<br>
+<button (click)="save()">Создать</button>
+
+
+<b>Список лекций</b>
+<div>
+  <div class="green-back" *ngFor="let l of lectures">
+    <div class="card card-body dark-green-back">
+    <span>{{l.name}} {{l.description}}
+      <span style="float: right">
+        <button class="btn btn-danger" style="margin-right: 10px" (click)="delete(l.id)">Удалить</button>
+        <button class="btn btn-warning" (click)="edit()">Обновить</button>
+      </span>
+      </span>
+    </div>
+  </div>
+  <br>
+</div>
