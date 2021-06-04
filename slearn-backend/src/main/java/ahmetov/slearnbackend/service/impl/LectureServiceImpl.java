@@ -7,6 +7,7 @@ import ahmetov.slearnbackend.service.LectureService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -33,11 +34,12 @@ public class LectureServiceImpl implements LectureService {
     }
 
     @Override
+    @Transactional
     public void update(Lecture lecture) {
-        if (lecture.getId() == null) {
+        if (lecture.getId() != null && lectureRepository.findAllById(lecture.getId()).isPresent()) {
             lectureRepository.save(lecture);
         } else {
-            throw new NotFoundException("Лекции в базе данных не существует");
+            throw new NotFoundException("Лекции не существует");
         }
     }
 

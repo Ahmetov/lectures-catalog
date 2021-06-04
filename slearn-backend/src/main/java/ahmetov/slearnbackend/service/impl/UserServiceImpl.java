@@ -15,6 +15,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -47,6 +48,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public void update(AppUser appUser) {
         if (appUser.getId() != null || userRepository.findById(appUser.getId()).isPresent()) {
             userRepository.save(appUser);
@@ -64,10 +66,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public void registration(RegistrationDto registrationDto) {
         if (userRepository.findByEmail(registrationDto.getEmail()).isPresent()) {
             throw new RuntimeException("Пользователь с такой почтой уже существует");
         }
+
+        if (!registrationDto.getPassword().equals(registrationDto.getPasswordRepeat())) {
+            throw new RuntimeException("Пароли не совпадают");
+        }
+
         AppUser newUser = new AppUser();
         newUser.setFirstname(registrationDto.getFirstname());
         newUser.setLastname(registrationDto.getLastname());

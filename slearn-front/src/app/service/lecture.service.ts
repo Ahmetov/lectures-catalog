@@ -26,4 +26,12 @@ export class LectureService {
     return this.http.delete(URL + `/${id}`);
   }
 
+  getById(id: number): Observable<any> {
+    return this.http.get(URL + `/${id}`);
+  }
+
+  update(lecture: Lecture): Observable<any> {
+    return this.http.put(URL, lecture);
+  }
+
 }

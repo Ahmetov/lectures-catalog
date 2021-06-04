@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Lecture} from "../model/lecture";
 import {User} from "../model/user";
 import {UserService} from "../service/user.service";
-import {LectureUpdateComponent} from "../lecture/lecture-update/lecture-update.component";
+import {LectureEditComponent} from "../lecture/lecture-edit/lecture-edit.component";
 import {MatDialog} from "@angular/material/dialog";
 import {UserEditComponent} from "./user-edit/user-edit.component";
 

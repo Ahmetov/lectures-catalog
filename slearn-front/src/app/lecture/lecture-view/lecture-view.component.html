@@ -1,0 +1,16 @@
+<app-navigation></app-navigation>
+
+<p class="h3 head-title">Все лекции</p>
+
+<div class="card-deck" style="margin: 10px">
+  <div *ngFor="let l of lectures" class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h3 class="card-title"><b>{{l.name}}</b></h3>
+        <p class="card-text">{{l.description}}</p>
+        <a [routerLink]="['/lectures/' + l.id]" class="btn btn-success">Просмотр</a>
+      </div>
+    </div>
+    <br>
+  </div>
+</div>

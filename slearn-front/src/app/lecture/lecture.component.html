@@ -1,5 +1,5 @@
 <app-navigation></app-navigation>
-<p class="h3">Управление лекциями</p>
+<p class="h3 head-title">Управление лекциями</p>
 
 <div class="card card-body">
   <label for="name">Заголовок</label>
@@ -17,7 +17,7 @@
     <span>{{l.name}} {{l.description}}
       <span style="float: right">
         <button class="btn btn-danger" style="margin-right: 10px" (click)="delete(l.id, i)">Удалить</button>
-        <button class="btn btn-warning" (click)="edit()">Обновить</button>
+        <a class="btn btn-warning" [routerLink]="['/lectures/manage/', l.id]" >Обновить</a>
       </span>
       </span>
     </div>

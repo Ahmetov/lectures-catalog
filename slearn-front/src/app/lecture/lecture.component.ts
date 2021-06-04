@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {LectureService} from "../service/lecture.service";
 import {Lecture} from "../model/lecture";
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
-import {LectureUpdateComponent} from "./lecture-update/lecture-update.component";
+import {LectureEditComponent} from "./lecture-edit/lecture-edit.component";
+import {Router} from "@angular/router";
+import {User} from "../model/user";
 
 @Component({
   selector: 'app-lecture',
@@ -13,8 +15,7 @@ export class LectureComponent implements OnInit {
   public lectures: Lecture[] = [];
   public lecture: Lecture = {content: "", description: "", image: "", name: ""};
 
-  constructor(private lectureService: LectureService,
-              public dialog: MatDialog) { }
+  constructor(private lectureService: LectureService, private router: Router) { }
 
   ngOnInit(): void {
     this.lectureService.getAll().subscribe(data => {
@@ -38,13 +39,5 @@ export class LectureComponent implements OnInit {
         this.lectures.splice(index, 1);
       });
     }
-  }
-
-  edit(): void {
-    let dialogRef = this.dialog.open(LectureUpdateComponent, {
-      height: '400px',
-      width: '600px',
-    });
-
   }
 }

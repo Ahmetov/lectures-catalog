@@ -34,9 +34,9 @@ public class LectureController {
         lectureService.delete(id);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping()
     @PreAuthorize("hasAuthority('admin')")
-    public void update(@RequestBody Lecture lecture, @PathVariable Long id) {
+    public void update(@RequestBody Lecture lecture) {
         lectureService.update(lecture);
     }
 

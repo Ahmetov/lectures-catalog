@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {TokenStorageService} from "../../service/token-storage.service";
+import {TokenStorageService} from "../service/token-storage.service";
 import {Router} from "@angular/router";
-import {UserService} from "../../service/user.service";
-import {Role} from "../../model/role";
+import {UserService} from "../service/user.service";
+import {Role} from "../model/role";
 
 @Component({
   selector: 'app-navigation',

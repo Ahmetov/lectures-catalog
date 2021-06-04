@@ -20,4 +20,6 @@ public class RegistrationDto {
     private String email;
     @Size(min = 1, max = 8, message = "Пароль должен быть от 1 до 8 символов")
     private String password;
+    @Size(min = 1, max = 8, message = "Пароль должен быть от 1 до 8 символов")
+    private String passwordRepeat;
 }

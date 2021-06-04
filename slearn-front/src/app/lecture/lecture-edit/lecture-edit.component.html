@@ -1,0 +1,17 @@
+<app-navigation></app-navigation>
+
+<p class="h3">Редактирование лекции</p>
+
+<div class="card card-body">
+  <label for="name">Заголовок</label>
+  <input id="name" [(ngModel)]="this.lecture.name" class="form-control" type="text"><br>
+
+  <label for="description">Описание</label>
+  <textarea id="description" rows="4" [(ngModel)]="this.lecture.description" class="form-control" type="text">
+  </textarea><br>
+  <label for="content">Содержание</label>
+  <textarea id="content" rows="30" [(ngModel)]="this.lecture.content" class="form-control" type="text">
+    </textarea><br>
+
+  <button class="btn btn-secondary" (click)="update()">Создать</button><br>
+</div>

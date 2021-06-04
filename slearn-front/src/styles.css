@@ -45,3 +45,13 @@ nav {
   width: 400px;
 }
 
+.head-title {
+  margin: 20px;
+}
+
+.article {
+  border-radius: 10px;
+  margin: 50px;
+  padding: 50px;
+  background: whitesmoke;
+}
