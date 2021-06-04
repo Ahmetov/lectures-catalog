@@ -1,0 +1,18 @@
+<p class="h3">Редактирование пользователя</p>
+
+<label for="email">Почта</label>
+<input id="email" [(ngModel)]="this.user.email" class="form-control" type="text"><br>
+
+<label for="firstname">Имя</label>
+<input id="firstname" class="form-control" [(ngModel)]="this.user.firstname" type="text"><br>
+
+<label for="lastname">Фамилия</label>
+<input id="lastname" class="form-control" [(ngModel)]="this.user.lastname" type="text"><br>
+
+<label for="address">Адрес</label>
+<input id="address" class="form-control" [(ngModel)]="this.user.address" type="text"><br>
+
+<label for="phone">Телефон</label>
+<input id="phone" class="form-control" [(ngModel)]="this.user.phone" type="text"><br>
+
+<button class="btn btn-secondary" (click)="registration()">Обновить</button>

@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Collection;
 
 @Entity
 @Getter
@@ -14,8 +13,11 @@ public class Lecture {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(nullable = false)
     private String name;
+    @Column(columnDefinition = "text", nullable = false)
     private String description;
+    @Column(columnDefinition = "text", nullable = false)
     private String content;
     private String image;
     private Long views;

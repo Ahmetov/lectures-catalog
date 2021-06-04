@@ -22,6 +22,7 @@ public class AppUser implements UserDetails {
     private String lastname;
     private String address;
     private String phone;
+    @Column(unique = true)
     private String email;
     private String password;
 
@@ -34,6 +35,13 @@ public class AppUser implements UserDetails {
                     name = "role_id", referencedColumnName = "id")
     )
     private List<Role> roles;
+
+    @PreRemove
+    private void removeGroupsFromUsers() {
+        for (Role r : roles) {
+            r.getUsers().remove(this);
+        }
+    }
 
     @Transient
     private Collection<? extends GrantedAuthority> authorities;

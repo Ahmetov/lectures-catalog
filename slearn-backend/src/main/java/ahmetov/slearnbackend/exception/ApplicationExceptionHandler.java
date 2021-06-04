@@ -32,6 +32,6 @@ public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler 
         String errorMessage = ex.getBindingResult().getFieldErrors()
                 .stream().map(error -> error.getDefaultMessage())
                 .collect(Collectors.joining("\n"));
-        return new ResponseEntity<>(errorMessage, status);
+        return new ResponseEntity<>(errorMessage, HttpStatus.BAD_REQUEST);
     }
 }

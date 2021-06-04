@@ -41,9 +41,9 @@ public class UserController {
         userService.delete(id);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping()
     @PreAuthorize("hasAuthority('admin')")
-    public void update(@RequestBody AppUser appUser, @PathVariable Long id) {
+    public void update(@RequestBody AppUser appUser) {
         userService.update(appUser);
     }
 

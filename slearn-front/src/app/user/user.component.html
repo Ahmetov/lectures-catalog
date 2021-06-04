@@ -1,25 +1,20 @@
 <app-navigation></app-navigation>
 
+<div style="margin: 10px 10px">
+<button style="float: right" class="btn btn-success" routerLink="/registration">Зарегистрировать пользователя</button>
+</div>
 
-<b>Создать</b>
-<input type="text" name="name" >
-<br>
-<input type="text" name="description" >
-<br>
-<button >Создать</button>
-
-
-<b>Все пользователи</b>
+<p class="h3">Все пользователи</p>
 <div>
-  <div class="green-back" *ngFor="let usr of users">
+  <div class="green-back" *ngFor="let usr of users; index as i">
     <div class="card card-body dark-green-back">
     <span>
-      {{usr.firstname}}
+      {{usr.email}}
       <span style="float: right">
-        <button class="btn btn-danger" style="margin-right: 10px" >Удалить</button>
-        <button class="btn btn-warning" >Обновить</button>
+        <button class="btn btn-danger" style="margin-right: 10px" (click)="delete(usr.id, i)">Удалить</button>
+        <button class="btn btn-warning" (click)="edit(usr)">Обновить</button>
       </span>
-      </span>
+    </span>
     </div>
   </div>
   <br>

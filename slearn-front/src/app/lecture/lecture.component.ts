@@ -26,13 +26,16 @@ export class LectureComponent implements OnInit {
     this.lectureService.create(this.lecture).subscribe(data => {
       console.log(this.lecture.name);
       this.lectures.push(this.lecture);
+      this.lectureService.getAll().subscribe(data => {
+        this.lectures = data;
+      })
     });
   }
 
-  delete(id: number | undefined): void {
+  delete(id: number | undefined, index: number): void {
     if (id !== undefined) {
       this.lectureService.delete(id).subscribe(data => {
-        this.lectures.splice(id, 1);
+        this.lectures.splice(index, 1);
       });
     }
   }

@@ -1,6 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {UserService} from "../../service/user.service";
-import {Lecture} from "../../model/lecture";
 import {User} from "../../model/user";
 import {AuthService} from "../../service/auth.service";
 import {Router} from "@angular/router";
@@ -12,7 +10,15 @@ import {Router} from "@angular/router";
 })
 export class RegistrationComponent implements OnInit {
 
-  public user: User = {address: "", email: "", firstname: "", lastname: "", password: "", passwordRepeat: "", phone: ""};
+  public user: User = {
+    address: "",
+    email: "",
+    firstname: "",
+    lastname: "",
+    password: "",
+    passwordRepeat: "",
+    phone: ""
+  };
 
   constructor(private authService: AuthService, private router: Router) {
   }

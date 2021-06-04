@@ -1,21 +1,22 @@
 <app-navigation></app-navigation>
-<p>Управление лекциями</p>
+<p class="h3">Управление лекциями</p>
 
-<b>Создать</b>
-<input type="text" name="name" [(ngModel)]="this.lecture.name">
-<br>
-<input type="text" name="description" [(ngModel)]="this.lecture.description">
-<br>
-<button (click)="save()">Создать</button>
+<div class="card card-body">
+  <label for="name">Заголовок</label>
+  <input id="name" [(ngModel)]="this.lecture.name" class="form-control" type="text"><br>
 
+  <label for="description">Описание</label>
+  <input id="description" [(ngModel)]="this.lecture.description" class="form-control" type="text"><br>
 
-<b>Список лекций</b>
+  <button class="btn btn-light" (click)="save()">Создать</button><br>
+</div>
+
 <div>
-  <div class="green-back" *ngFor="let l of lectures">
+  <div class="green-back" *ngFor="let l of lectures; index as i">
     <div class="card card-body dark-green-back">
     <span>{{l.name}} {{l.description}}
       <span style="float: right">
-        <button class="btn btn-danger" style="margin-right: 10px" (click)="delete(l.id)">Удалить</button>
+        <button class="btn btn-danger" style="margin-right: 10px" (click)="delete(l.id, i)">Удалить</button>
         <button class="btn btn-warning" (click)="edit()">Обновить</button>
       </span>
       </span>

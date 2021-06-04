@@ -48,7 +48,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void update(AppUser appUser) {
-        if (appUser.getId() == null) {
+        if (appUser.getId() != null || userRepository.findById(appUser.getId()).isPresent()) {
             userRepository.save(appUser);
         } else {
             throw new NotFoundException("Пользователя в базе данных не существует");
@@ -65,6 +65,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void registration(RegistrationDto registrationDto) {
+        if (userRepository.findByEmail(registrationDto.getEmail()).isPresent()) {
+            throw new RuntimeException("Пользователь с такой почтой уже существует");
+        }
         AppUser newUser = new AppUser();
         newUser.setFirstname(registrationDto.getFirstname());
         newUser.setLastname(registrationDto.getLastname());
