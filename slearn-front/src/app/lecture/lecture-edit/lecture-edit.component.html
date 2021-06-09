@@ -3,15 +3,42 @@
 <p class="h3">Редактирование лекции</p>
 
 <div class="card card-body">
+  <div *ngIf="name.invalid && (name.dirty || name.touched)">
+    <div class="error-text" *ngIf="name.errors?.required">
+      Введите заголовок
+    </div>
+    <div *ngIf="name.errors?.minlength">
+      Заголовок должен состоять минимум из одного символа
+    </div>
+  </div>
   <label for="name">Заголовок</label>
-  <input id="name" [(ngModel)]="this.lecture.name" class="form-control" type="text"><br>
-
+  <input id="name"
+         [(ngModel)]="this.lecture.name"
+         class="form-control"
+         required
+         #name="ngModel"
+         type="text"><br>
+  <div *ngIf="description.invalid && (description.dirty || description.touched)">
+    <div class="error-text" *ngIf="description.errors?.required">
+      Введите описание
+    </div>
+    <div *ngIf="description.errors?.minlength">
+      Описание должно состоять минимум из одного символа
+    </div>
+  </div>
   <label for="description">Описание</label>
-  <textarea id="description" rows="4" [(ngModel)]="this.lecture.description" class="form-control" type="text">
+  <textarea id="description"
+            required
+            minlength="1"
+            #description="ngModel"
+            rows="4"
+            [(ngModel)]="this.lecture.description"
+            class="form-control"
+            type="text">
   </textarea><br>
   <label for="content">Содержание</label>
   <textarea id="content" rows="30" [(ngModel)]="this.lecture.content" class="form-control" type="text">
     </textarea><br>
 
-  <button class="btn btn-secondary" (click)="update()">Создать</button><br>
+  <button class="btn btn-secondary" [disabled]="name.invalid || description.invalid" (click)="update()">Создать</button><br>
 </div>

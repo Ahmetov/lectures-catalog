@@ -1,10 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {LectureService} from "../service/lecture.service";
 import {Lecture} from "../model/lecture";
-import {MatDialog, MatDialogModule} from '@angular/material/dialog';
-import {LectureEditComponent} from "./lecture-edit/lecture-edit.component";
 import {Router} from "@angular/router";
-import {User} from "../model/user";
+import {ReportService} from "../service/report.service";
 
 @Component({
   selector: 'app-lecture',
@@ -15,7 +13,8 @@ export class LectureComponent implements OnInit {
   public lectures: Lecture[] = [];
   public lecture: Lecture = {content: "", description: "", image: "", name: ""};
 
-  constructor(private lectureService: LectureService, private router: Router) { }
+  constructor(private lectureService: LectureService, private reportService: ReportService, private router: Router) {
+  }
 
   ngOnInit(): void {
     this.lectureService.getAll().subscribe(data => {
@@ -40,4 +39,17 @@ export class LectureComponent implements OnInit {
       });
     }
   }
+
+  report(id: number | undefined): void {
+    if (id !== undefined) {
+      this.reportService.getLectureReport(id).subscribe(resp => {
+        let downloadURL = window.URL.createObjectURL(resp);
+        let link = document.createElement('a');
+        link.href = downloadURL;
+        link.download = "report.pdf";
+        link.click();
+      });
+    }
+  }
+
 }

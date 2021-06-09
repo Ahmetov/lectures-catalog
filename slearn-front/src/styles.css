@@ -55,3 +55,8 @@ nav {
   padding: 50px;
   background: whitesmoke;
 }
+
+.error-text {
+  color: #b40d00;
+  font-weight: bold;
+}
